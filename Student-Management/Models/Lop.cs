@@ -21,7 +21,5 @@ public partial class Lop
 
     public virtual Giaovien? MaGvcnNavigation { get; set; }
 
-    public virtual Namhoc MaNamHocNavigation { get; set; } = null!;
-
     public virtual ICollection<PhancongGiangday> PhancongGiangdays { get; set; } = new List<PhancongGiangday>();
 }

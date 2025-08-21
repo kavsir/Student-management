@@ -41,13 +41,13 @@ public partial class QuanLyHocSinhContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=SEELE;Database=QuanLyHocSinh;Integrated Security=True;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=ATBX-4869\\WENZHU;Database=QuanLyHocSinh;User ID=sa;Password=230919112005;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Diem>(entity =>
         {
-            entity.HasKey(e => e.MaDiem).HasName("PK__DIEM__333260251E11A3DB");
+            entity.HasKey(e => e.MaDiem).HasName("PK__DIEM__33326025A59E0660");
 
             entity.ToTable("DIEM");
 
@@ -73,7 +73,7 @@ public partial class QuanLyHocSinhContext : DbContext
 
         modelBuilder.Entity<Giaovien>(entity =>
         {
-            entity.HasKey(e => e.MaGv).HasName("PK__GIAOVIEN__2725AEF346489330");
+            entity.HasKey(e => e.MaGv).HasName("PK__GIAOVIEN__2725AEF352C977D4");
 
             entity.ToTable("GIAOVIEN");
 
@@ -93,7 +93,7 @@ public partial class QuanLyHocSinhContext : DbContext
 
         modelBuilder.Entity<Hocky>(entity =>
         {
-            entity.HasKey(e => e.MaHk).HasName("PK__HOCKY__2725A6E70B459F35");
+            entity.HasKey(e => e.MaHk).HasName("PK__HOCKY__2725A6E7A59087C3");
 
             entity.ToTable("HOCKY");
 
@@ -110,7 +110,7 @@ public partial class QuanLyHocSinhContext : DbContext
 
         modelBuilder.Entity<Hocphi>(entity =>
         {
-            entity.HasKey(e => e.MaHp).HasName("PK__HOCPHI__2725A6EC2F368F8F");
+            entity.HasKey(e => e.MaHp).HasName("PK__HOCPHI__2725A6EC10CC8BDE");
 
             entity.ToTable("HOCPHI");
 
@@ -133,7 +133,7 @@ public partial class QuanLyHocSinhContext : DbContext
 
         modelBuilder.Entity<Hocsinh>(entity =>
         {
-            entity.HasKey(e => e.MaHs).HasName("PK__HOCSINH__2725A6EF7FBD72DA");
+            entity.HasKey(e => e.MaHs).HasName("PK__HOCSINH__2725A6EF3537A37F");
 
             entity.ToTable("HOCSINH");
 
@@ -155,7 +155,7 @@ public partial class QuanLyHocSinhContext : DbContext
 
         modelBuilder.Entity<Lichhoc>(entity =>
         {
-            entity.HasKey(e => e.MaLichHoc).HasName("PK__LICHHOC__150EBC21BB63C0B0");
+            entity.HasKey(e => e.MaLichHoc).HasName("PK__LICHHOC__150EBC21483AEF9D");
 
             entity.ToTable("LICHHOC");
 
@@ -191,7 +191,7 @@ public partial class QuanLyHocSinhContext : DbContext
 
         modelBuilder.Entity<Lop>(entity =>
         {
-            entity.HasKey(e => e.MaLop).HasName("PK__LOP__3B98D2733854AD5E");
+            entity.HasKey(e => e.MaLop).HasName("PK__LOP__3B98D2738AD60462");
 
             entity.ToTable("LOP");
 
@@ -200,17 +200,12 @@ public partial class QuanLyHocSinhContext : DbContext
 
             entity.HasOne(d => d.MaGvcnNavigation).WithMany(p => p.Lops)
                 .HasForeignKey(d => d.MaGvcn)
-                .HasConstraintName("FK_LOP_GIAOVIEN");
-
-            entity.HasOne(d => d.MaNamHocNavigation).WithMany(p => p.Lops)
-                .HasForeignKey(d => d.MaNamHoc)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_LOP_NAMHOC");
+                .HasConstraintName("FK_LOP_GVCN");
         });
 
         modelBuilder.Entity<Monhoc>(entity =>
         {
-            entity.HasKey(e => e.MaMonHoc).HasName("PK__MONHOC__4127737F68F11C64");
+            entity.HasKey(e => e.MaMonHoc).HasName("PK__MONHOC__4127737FE3068AE8");
 
             entity.ToTable("MONHOC");
 
@@ -219,7 +214,7 @@ public partial class QuanLyHocSinhContext : DbContext
 
         modelBuilder.Entity<Namhoc>(entity =>
         {
-            entity.HasKey(e => e.MaNamHoc).HasName("PK__NAMHOC__7DBADD743D8D10A9");
+            entity.HasKey(e => e.MaNamHoc).HasName("PK__NAMHOC__7DBADD74FFC52B34");
 
             entity.ToTable("NAMHOC");
 
@@ -228,7 +223,7 @@ public partial class QuanLyHocSinhContext : DbContext
 
         modelBuilder.Entity<PhancongGiangday>(entity =>
         {
-            entity.HasKey(e => e.MaPc).HasName("PK__PHANCONG__2725E7E5BABC98C0");
+            entity.HasKey(e => e.MaPc).HasName("PK__PHANCONG__2725E7E593E95A30");
 
             entity.ToTable("PHANCONG_GIANGDAY");
 
@@ -259,7 +254,7 @@ public partial class QuanLyHocSinhContext : DbContext
 
         modelBuilder.Entity<Phonghoc>(entity =>
         {
-            entity.HasKey(e => e.MaPhong).HasName("PK__PHONGHOC__20BD5E5BB537698A");
+            entity.HasKey(e => e.MaPhong).HasName("PK__PHONGHOC__20BD5E5BD1C3E235");
 
             entity.ToTable("PHONGHOC");
 
@@ -269,11 +264,11 @@ public partial class QuanLyHocSinhContext : DbContext
 
         modelBuilder.Entity<Taikhoan>(entity =>
         {
-            entity.HasKey(e => e.MaTk).HasName("PK__TAIKHOAN__2725007073994027");
+            entity.HasKey(e => e.MaTk).HasName("PK__TAIKHOAN__27250070493BC468");
 
             entity.ToTable("TAIKHOAN");
 
-            entity.HasIndex(e => e.TenDangNhap, "UQ__TAIKHOAN__55F68FC04C0663BA").IsUnique();
+            entity.HasIndex(e => e.TenDangNhap, "UQ__TAIKHOAN__55F68FC09C033252").IsUnique();
 
             entity.Property(e => e.MaTk).HasColumnName("MaTK");
             entity.Property(e => e.MaGv).HasColumnName("MaGV");

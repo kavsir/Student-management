@@ -14,6 +14,4 @@ public partial class Namhoc
     public DateOnly NgayKetThuc { get; set; }
 
     public virtual ICollection<Hocky> Hockies { get; set; } = new List<Hocky>();
-
-    public virtual ICollection<Lop> Lops { get; set; } = new List<Lop>();
 }
