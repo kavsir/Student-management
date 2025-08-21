@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Student_Management.Models.Giaovien>
+
+@{
+    ViewData["Title"] = "Danh sách Giáo viên";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Thêm Giáo viên</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Mã GV</th>
+            <th>Họ Tên</th>
+            <th>Ngày Sinh</th>
+            <th>Giới Tính</th>
+            <th>Địa Chỉ</th>
+            <th>SĐT</th>
+            <th>Email</th>
+            <th>Môn học</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MaGv</td>
+                    <td>@item.HoTen</td>
+                    <td>@item.NgaySinh?.ToString("yyyy-MM-dd")</td>
+                    <td>@item.GioiTinh</td>
+                    <td>@item.DiaChi</td>
+                    <td>@item.Sdt</td>
+                    <td>@item.Email</td>
+                    <td>@item.MaMonHocNavigation?.TenMonHoc</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.MaGv" class="btn btn-info btn-sm">Chi tiết</a>
+                        <a asp-action="Edit" asp-route-id="@item.MaGv" class="btn btn-warning btn-sm">Sửa</a>
+                        <a asp-action="Delete" asp-route-id="@item.MaGv" class="btn btn-danger btn-sm">Xóa</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="9" class="text-center">Không có dữ liệu giáo viên.</td>
+            </tr>
+        }
+    </tbody>
+</table>
