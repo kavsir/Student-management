@@ -1,0 +1,48 @@
+﻿@model Student_Management.Models.Giaovien
+
+@{
+    ViewData["Title"] = "Sửa Giáo viên";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="MaGv" />
+    <div class="form-group">
+        <label asp-for="HoTen" class="control-label"></label>
+        <input asp-for="HoTen" class="form-control" />
+        <span asp-validation-for="HoTen" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="NgaySinh" class="control-label"></label>
+        <input asp-for="NgaySinh" class="form-control" type="date" />
+        <span asp-validation-for="NgaySinh" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="GioiTinh" class="control-label"></label>
+        <input asp-for="GioiTinh" class="form-control" />
+        <span asp-validation-for="GioiTinh" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DiaChi" class="control-label"></label>
+        <input asp-for="DiaChi" class="form-control" />
+        <span asp-validation-for="DiaChi" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Sdt" class="control-label"></label>
+        <input asp-for="Sdt" class="form-control" />
+        <span asp-validation-for="Sdt" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MaMonHoc" class="control-label"></label>
+        <select asp-for="MaMonHoc" class="form-control" asp-items="ViewBag.MaMonHoc"></select>
+        <span asp-validation-for="MaMonHoc" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</form>
