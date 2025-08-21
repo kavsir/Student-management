@@ -1,0 +1,48 @@
+﻿@model Student_Management.Models.Taikhoan
+
+@{
+    Layout = "~/Views/Shared/LoginLayout.cshtml";
+    ViewData["Title"] = "Đăng nhập";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Login.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+}
+
+<div class="d-flex justify-content-center align-items-center vh-10 bg-light">
+    <div class="card shadow p-4" style="width: 400px;">
+        <h4 class="text-center mb-4"><i class="bi bi-person-circle"></i> Đăng nhập hệ thống</h4>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Error</div>
+        }
+
+        <form asp-action="Index" method="post">
+            <div class="mb-3">
+                <label for="tenDangNhap" class="form-label"><i class="bi bi-person-fill"></i> Tên đăng nhập</label>
+                <input type="text" name="tenDangNhap" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="matKhau" class="form-label"><i class="bi bi-lock-fill"></i> Mật khẩu</label>
+                <input type="password" name="matKhau" class="form-control" required />
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-box-arrow-in-right"></i> Đăng nhập</button>
+            </div>
+        </form>
+
+        @* <div class="text-center mt-3">
+            <a asp-action="CreateAccount" asp-controller="Login" class="btn btn-outline-secondary btn-sm" style="width: 352px;">
+                <i class="bi bi-person-plus-fill"></i> Tạo tài khoản mới
+            </a>
+        </div *@
+        <div class="text-center mt-">
+    <a asp-action="ForgotPassword" asp-controller="Login" class="btn btn-outline-secondary btn-sm" style="width: 352px;">Quên mật khẩu?</a>
+</div>
+
+    </div>
+</div>
