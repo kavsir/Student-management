@@ -1,0 +1,40 @@
+﻿@model Student_Management.Models.Taikhoan
+
+@{
+    ViewData["Title"] = "Đăng ký tài khoản";
+}
+
+<h2 class="text-center">Đăng ký tài khoản</h2>
+
+<form asp-action="Register" method="post">
+    <div class="form-group">
+        <label asp-for="TenDangNhap"></label>
+        <input asp-for="TenDangNhap" class="form-control" />
+        <span asp-validation-for="TenDangNhap" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MatKhau"></label>
+        <input asp-for="MatKhau" class="form-control" type="password" />
+        <span asp-validation-for="MatKhau" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="VaiTro">Vai trò</label>
+        <select asp-for="VaiTro" class="form-control">
+            <option value="Admin">Admin</option>
+            <option value="GiaoVien">Giáo viên</option>
+            <option value="HocSinh">Học sinh</option>
+        </select>
+        <span asp-validation-for="VaiTro" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Đăng ký</button>
+    <a asp-action="Login" class="btn btn-link">Đã có tài khoản? Đăng nhập</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Student_Management.Models;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Student_Management.Controllers
 {
+    [Authorize(Roles = "GiaoVien")]
     public class GiaoVienController : Controller
     {
         private readonly QuanLyHocSinhContext _context;

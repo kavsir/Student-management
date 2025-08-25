@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Student_Management.Models.Hocsinh>
+
+@{
+    ViewData["Title"] = "Danh sách học sinh";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Thêm mới học sinh</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Họ tên</th>
+            <th>Ngày sinh</th>
+            <th>Giới tính</th>
+            <th>Email</th>
+            <th>SDT</th>
+            <th>Lớp</th>
+            <th>Trạng thái</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var hs in Model)
+        {
+            <tr>
+                <td>@hs.HoTen</td>
+                <td>@hs.NgaySinh?.ToString("dd/MM/yyyy")</td>
+                <td>@hs.GioiTinh</td>
+                <td>@hs.Email</td>
+                <td>@hs.Sdt</td>
+                <td>@hs.MaLopNavigation?.TenLop</td>
+                <td>@hs.TrangThai</td>
+                <td>
+                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@hs.MaHs">Chi tiết</a>
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@hs.MaHs">Sửa</a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@hs.MaHs">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

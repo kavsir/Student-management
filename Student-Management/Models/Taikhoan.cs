@@ -11,11 +11,12 @@ public partial class Taikhoan
 
     public string MatKhau { get; set; } = null!;
 
-    public string VaiTro { get; set; } = null!;
+    public string? VaiTro { get; set; }
+
+    public int? MaGv { get; set; }
 
     public int? MaHs { get; set; }
 
-    public int? MaGv { get; set; }
 
     public virtual Giaovien? MaGvNavigation { get; set; }
 

@@ -1,0 +1,45 @@
+﻿@model Student_Management.Models.Taikhoan
+
+@{
+    ViewData["Title"] = "Chỉnh sửa tài khoản";
+}
+
+<h2>Chỉnh sửa tài khoản</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="MaTk" />
+    <div class="form-group">
+        <label asp-for="TenDangNhap" class="control-label"></label>
+        <input asp-for="TenDangNhap" class="form-control" />
+        <span asp-validation-for="TenDangNhap" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MatKhau" class="control-label"></label>
+        <input asp-for="MatKhau" class="form-control" />
+        <span asp-validation-for="MatKhau" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="VaiTro" class="control-label"></label>
+        <select asp-for="VaiTro" class="form-control">
+            <option value="Admin">Admin</option>
+            <option value="GiaoVien">Giáo viên</option>
+            <option value="HocSinh">Học sinh</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="MaGv" class="control-label">Mã Giáo Viên</label>
+        <input asp-for="MaGv" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="MaHs" class="control-label">Mã Học Sinh</label>
+        <input asp-for="MaHs" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success">Cập nhật</button>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

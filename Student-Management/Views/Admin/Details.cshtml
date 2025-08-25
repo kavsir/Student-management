@@ -1,0 +1,28 @@
+﻿@model Student_Management.Models.Taikhoan
+
+@{
+    ViewData["Title"] = "Chi tiết tài khoản";
+}
+
+<h2>Chi tiết tài khoản</h2>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">Tên đăng nhập</dt>
+        <dd class="col-sm-10">@Model.TenDangNhap</dd>
+
+        <dt class="col-sm-2">Vai trò</dt>
+        <dd class="col-sm-10">@Model.VaiTro</dd>
+
+        <dt class="col-sm-2">Mã giáo viên</dt>
+        <dd class="col-sm-10">@Model.MaGv</dd>
+
+        <dt class="col-sm-2">Mã học sinh</dt>
+        <dd class="col-sm-10">@Model.MaHs</dd>
+    </dl>
+</div>
+
+<p>
+    <a asp-action="Edit" asp-route-id="@Model.MaTk" class="btn btn-warning">Sửa</a> |
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</p>
