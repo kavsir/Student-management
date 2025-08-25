@@ -4,29 +4,38 @@
     ViewData["Title"] = "Chi tiết Giáo viên";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h2>@Model.HoTen</h2>
 
-<div>
-    <dl class="row">
-        <dt class="col-sm-2">Mã GV</dt>
-        <dd class="col-sm-10">@Model.MaGv</dd>
-        <dt class="col-sm-2">Họ Tên</dt>
-        <dd class="col-sm-10">@Model.HoTen</dd>
-        <dt class="col-sm-2">Ngày Sinh</dt>
-        <dd class="col-sm-10">@Model.NgaySinh</dd>
-        <dt class="col-sm-2">Giới Tính</dt>
-        <dd class="col-sm-10">@Model.GioiTinh</dd>
-        <dt class="col-sm-2">Địa Chỉ</dt>
-        <dd class="col-sm-10">@Model.DiaChi</dd>
-        <dt class="col-sm-2">SĐT</dt>
-        <dd class="col-sm-10">@Model.Sdt</dd>
-        <dt class="col-sm-2">Email</dt>
-        <dd class="col-sm-10">@Model.Email</dd>
-        <dt class="col-sm-2">Môn học</dt>
-        <dd class="col-sm-10">@Model.MaMonHocNavigation?.TenMonHoc</dd>
-    </dl>
-</div>
+<p><strong>Email:</strong> @Model.Email</p>
+<p><strong>SĐT:</strong> @Model.Sdt</p>
+<p><strong>Địa chỉ:</strong> @Model.DiaChi</p>
+<p><strong>Ngày sinh:</strong> @Model.NgaySinh?.ToString("dd/MM/yyyy")</p>
+<p><strong>Môn dạy:</strong> @Model.MaMonHocNavigation?.TenMonHoc</p>
+<p><strong>Lớp chủ nhiệm:</strong> @(Model.Lops.FirstOrDefault()?.TenLop ?? "—")</p>
+
+<hr />
+<h4>Lịch dạy</h4>
+@if (Model.Lichhocs.Any())
+{
+    <table class="table table-striped">
+        <tr><th>Môn</th><th>Lớp</th><th>Thứ</th><th>Tiết</th></tr>
+        @foreach (var lich in Model.Lichhocs)
+        {
+            <tr>
+                <td>@lich.MaMonHocNavigation?.TenMonHoc</td>
+                <td>@lich.MaLopNavigation?.TenLop</td>
+                <td>@lich.ThuTrongTuan</td>
+                <td>@lich.TietHoc</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>Chưa có lịch giảng dạy</p>
+}
+
 <p>
-    <a asp-action="Edit" asp-route-id="@Model.MaGv">Sửa</a> |
-    <a asp-action="Index">Trở về danh sách</a>
+    <a asp-action="Edit" asp-route-id="@Model.MaGv" class="btn btn-warning">Sửa</a>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
 </p>

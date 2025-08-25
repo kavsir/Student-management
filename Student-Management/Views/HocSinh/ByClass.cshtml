@@ -1,0 +1,47 @@
+﻿@model Student_Management.Models.Lop
+
+@{
+    ViewData["Title"] = "Danh sách học sinh";
+}
+
+<h2>Danh sách học sinh lớp @Model.TenLop</h2>
+<p>Giáo viên chủ nhiệm: @Model.MaGvcnNavigation?.HoTen</p>
+
+<p>
+    <a class="btn btn-success" asp-action="Create">Thêm học sinh mới</a>
+    <a class="btn btn-secondary" asp-action="Index">Quay lại danh sách lớp</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Họ tên</th>
+            <th>Ngày sinh</th>
+            <th>Giới tính</th>
+            <th>Địa chỉ</th>
+            <th>Email</th>
+            <th>SĐT</th>
+            <th>Trạng thái</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var hs in Model.Hocsinhs)
+        {
+            <tr>
+                <td>@hs.HoTen</td>
+                <td>@hs.NgaySinh?.ToString("dd/MM/yyyy")</td>
+                <td>@hs.GioiTinh</td>
+                <td>@hs.DiaChi</td>
+                <td>@hs.Email</td>
+                <td>@hs.Sdt</td>
+                <td>@hs.TrangThai</td>
+                <td>
+                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@hs.MaHs">Xem</a>
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@hs.MaHs">Sửa</a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@hs.MaHs">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

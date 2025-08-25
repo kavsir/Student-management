@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Student_Management.Models.Lop>
+
+@{
+    ViewData["Title"] = "Chọn lớp";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Tên lớp</th>
+            <th>Sĩ số (theo cột)</th>
+            <th>Giáo viên CN</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var lop in Model)
+        {
+            <tr>
+                <td>@lop.TenLop</td>
+                <td>@(lop.SiSo?.ToString() ?? "-")</td>
+                <td>@(lop.MaGvcnNavigation?.HoTen ?? "-")</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" asp-action="ByClass" asp-route-id="@lop.MaLop">
+                        Xem học sinh
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

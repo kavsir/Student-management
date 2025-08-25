@@ -1,0 +1,67 @@
+﻿@model Student_Management.Models.ViewModels.HocSinhViewModel
+
+@{
+    ViewData["Title"] = "Sửa Học sinh";
+}
+
+<h2>Sửa Học sinh</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="MaHs" />
+
+    <div class="form-group">
+        <label asp-for="HoTen"></label>
+        <input asp-for="HoTen" class="form-control" />
+        <span asp-validation-for="HoTen" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NgaySinh"></label>
+        <input asp-for="NgaySinh" type="date" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="GioiTinh"></label>
+        <select asp-for="GioiTinh" class="form-control">
+            <option value="">--Chọn--</option>
+            <option value="Nam" selected="@Model.GioiTinh == " Nam"">Nam</option>
+            <option value="Nữ" selected="@Model.GioiTinh == " Nữ"">Nữ</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Sdt"></label>
+        <input asp-for="Sdt" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TrangThai"></label>
+        <input asp-for="TrangThai" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DiaChi"></label>
+        <input asp-for="DiaChi" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MaLop"></label>
+        <select asp-for="MaLop" class="form-control" asp-items="ViewBag.LopList">
+            <option value="">--Chọn Lớp--</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Cập nhật</button>
+    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

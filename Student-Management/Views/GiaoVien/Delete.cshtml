@@ -4,22 +4,39 @@
     ViewData["Title"] = "Xóa Giáo viên";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h2>Bạn có chắc chắn muốn xóa @Model.HoTen?</h2>
 
-<h3>Bạn có chắc muốn xóa giáo viên này?</h3>
-<div>
-    <dl class="row">
-        <dt class="col-sm-2">Họ Tên</dt>
-        <dd class="col-sm-10">@Model.HoTen</dd>
-        <dt class="col-sm-2">Môn học</dt>
-        <dd class="col-sm-10">@Model.MaMonHocNavigation?.TenMonHoc</dd>
-        <dt class="col-sm-2">Email</dt>
-        <dd class="col-sm-10">@Model.Email</dd>
-    </dl>
+<div class="alert alert-danger">
+    <p><strong>Mã GV:</strong> @Model.MaGv</p>
+    <p><strong>Email:</strong> @Model.Email</p>
+    <p><strong>SĐT:</strong> @Model.Sdt</p>
+    <p><strong>Môn dạy:</strong> @Model.MaMonHocNavigation?.TenMonHoc</p>
+    <p><strong>Lớp chủ nhiệm:</strong> @(Model.Lops.FirstOrDefault()?.TenLop ?? "—")</p>
 </div>
 
-<form asp-action="Delete">
+<h4>Lịch dạy</h4>
+@if (Model.Lichhocs.Any())
+{
+    <table class="table table-bordered">
+        <tr><th>Môn</th><th>Lớp</th><th>Thứ</th><th>Tiết</th></tr>
+        @foreach (var lich in Model.Lichhocs)
+        {
+            <tr>
+                <td>@lich.MaMonHocNavigation?.TenMonHoc</td>
+                <td>@lich.MaLopNavigation?.TenLop</td>
+                <td>@lich.ThuTrongTuan</td>
+                <td>@lich.TietHoc</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>Không có lịch dạy</p>
+}
+
+<form asp-action="Delete" method="post">
     <input type="hidden" asp-for="MaGv" />
-    <button type="submit" class="btn btn-danger">Xóa</button>
-    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+    <button type="submit" class="btn btn-danger">Xác nhận xóa</button>
+    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
 </form>

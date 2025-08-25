@@ -4,52 +4,38 @@
     ViewData["Title"] = "Danh sách Giáo viên";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h2>Danh sách Giáo viên</h2>
 
 <p>
-    <a asp-action="Create" class="btn btn-primary">Thêm Giáo viên</a>
+    <a asp-action="Create" class="btn btn-success">+ Thêm mới</a>
 </p>
 
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>Mã GV</th>
-            <th>Họ Tên</th>
-            <th>Ngày Sinh</th>
-            <th>Giới Tính</th>
-            <th>Địa Chỉ</th>
-            <th>SĐT</th>
+            <th>Họ tên</th>
             <th>Email</th>
-            <th>Môn học</th>
-            <th>Thao tác</th>
+            <th>SĐT</th>
+            <th>Môn giảng dạy</th>
+            <th>Lớp chủ nhiệm</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        @if (Model != null && Model.Any())
+        @foreach (var gv in Model)
         {
-            foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.MaGv</td>
-                    <td>@item.HoTen</td>
-                    <td>@item.NgaySinh?.ToString("yyyy-MM-dd")</td>
-                    <td>@item.GioiTinh</td>
-                    <td>@item.DiaChi</td>
-                    <td>@item.Sdt</td>
-                    <td>@item.Email</td>
-                    <td>@item.MaMonHocNavigation?.TenMonHoc</td>
-                    <td>
-                        <a asp-action="Details" asp-route-id="@item.MaGv" class="btn btn-info btn-sm">Chi tiết</a>
-                        <a asp-action="Edit" asp-route-id="@item.MaGv" class="btn btn-warning btn-sm">Sửa</a>
-                        <a asp-action="Delete" asp-route-id="@item.MaGv" class="btn btn-danger btn-sm">Xóa</a>
-                    </td>
-                </tr>
-            }
-        }
-        else
-        {
+            var lopChuNhiem = gv.Lops.FirstOrDefault();
             <tr>
-                <td colspan="9" class="text-center">Không có dữ liệu giáo viên.</td>
+                <td>@gv.HoTen</td>
+                <td>@gv.Email</td>
+                <td>@gv.Sdt</td>
+                <td>@gv.MaMonHocNavigation?.TenMonHoc</td>
+                <td>@(lopChuNhiem != null ? lopChuNhiem.TenLop : "—")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@gv.MaGv">Chi tiết</a> |
+                    <a asp-action="Edit" asp-route-id="@gv.MaGv">Sửa</a> |
+                    <a asp-action="Delete" asp-route-id="@gv.MaGv">Xóa</a>
+                </td>
             </tr>
         }
     </tbody>
